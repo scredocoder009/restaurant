@@ -30,7 +30,7 @@ namespace restourant
             return quality;
         }
 
-
+         
         public void Crack()
         {
             if (this.quality < 25)

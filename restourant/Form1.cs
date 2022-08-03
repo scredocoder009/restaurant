@@ -13,7 +13,8 @@ namespace restourant
     public partial class Form1 : Form
     {
         private Employee employee;
-        private object birornarsa;
+        private object connect;
+        private int quantRequest = 1;
         public Form1()
 
         {
@@ -26,20 +27,39 @@ namespace restourant
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            RequestException();
             int quantity = int.Parse(textBox1.Text);
 
 
             if (Chicken.Checked)
             {
-                birornarsa = employee.NewRequest(quantity, typeof(ChickenOrder));
-                label2.Text = employee.Inspect(birornarsa);
+                connect = employee.NewRequest(quantity, typeof(ChickenOrder));
+                label2.Text = employee.Inspect(connect);
             }
             else if (checkBox2.Checked)
             {
-                birornarsa = employee.NewRequest(quantity, typeof(EggOrder));
-                label2.Text = employee.Inspect(birornarsa);
+                connect = employee.NewRequest(quantity, typeof(EggOrder));
+                label2.Text = employee.Inspect(connect);
             }
+        }
+
+        private void RequestException()
+        {
+            if (quantRequest == 3)
+            {
+                quantRequest = 1;
+                if (Chicken.Checked)
+                {
+                    Chicken.Checked = false;
+                    checkBox2.Checked = true;
+                }
+                else
+                {
+                    Chicken.Checked = true;
+                    checkBox2.Checked = false;
+                }
+            }
+            ++quantRequest;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,15 +69,15 @@ namespace restourant
 
         private void button2_Click(object sender, EventArgs e)
         {
+            RequestException();
+            connect = employee.CopyRequest();
 
-            birornarsa = employee.CopyRequest();
-
-            label2.Text = employee.Inspect(birornarsa);
+            label2.Text = employee.Inspect(connect);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox2.Text = employee.PrepareFood(birornarsa);
+            textBox2.Text = employee.PrepareFood(connect);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
