@@ -43,6 +43,8 @@ namespace restourant
             }
         }
 
+//пешхизмат фаромушхотир мебошад 
+// ба талаботҳои дар саҳифаи 8 ва саҳифаи 17 буда назар кунед
         private void RequestException()
         {
             if (quantRequest == 3)
