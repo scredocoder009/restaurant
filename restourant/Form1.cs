@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace restourant
 {
+    
+    // ҳамма хатогиҳо бояд коркард кара шавад ва ба истифодабаранда нишон дода шавад.
+    // таърихи фармонхоро дар оинаи дидани натиҷа ногоҳ доред.
+    // Пешхизмат наметавонад 2 фармонро дар як вақт қабул намояд (пешхизмат наметавонад дар як вақт фармони ҳам  chicken ва egg гирад) 
     public partial class Form1 : Form
     {
         private Employee employee;
@@ -53,6 +57,8 @@ namespace restourant
             }
         }
 
+//пешхизмат фаромушхотир мебошад 
+// ба талаботҳои дар саҳифаи 8 ва саҳифаи 17 буда назар кунед
         private void RequestException()
         {
             if (quantRequest == 3)
