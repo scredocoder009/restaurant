@@ -22,40 +22,42 @@ namespace restourant
             quant = quantity;
             menu_Item = MenuIntem;
 
-            if (MenuIntem ==typeof( ChickenOrder))
+            if (MenuIntem == typeof(ChickenOrder))
             {
                 return new ChickenOrder(quantity);
             }
             return new EggOrder(quantity);
         }
-   
+
 
         public object CopyRequest()
         {
-            if (menu_Item is ChickenOrder)
+            if (menu_Item.GetType() == typeof(EggOrder))
             {
-                return new ChickenOrder(quant);
+                return new EggOrder(quant);
             }
-            return new EggOrder(quant);
+            return new ChickenOrder(quant);
         }
 
 
         public string Inspect(object menuItem)
         {
-            if (menuItem is EggOrder)
+            if (menuItem.GetType() == typeof(EggOrder))
             {
-                return "Egg quality" + ((EggOrder)menuItem).GetQuality();
+                return ((EggOrder)menuItem).GetQuality().ToString();
+
+                //  return ((EggOrder)menuItem).GetQuantity().ToString();
             }
 
-            return "No inspection is required";
-
+            return " No inspection is required";
+            `
         }
 
 
         public string PrepareFood(object menuItem)
         {
 
-            if (menuItem is ChickenOrder)
+            if (menuItem.GetType() == typeof(ChickenOrder))
             {
                 ChickenOrder chickenOrder = (ChickenOrder)menuItem;
 
@@ -67,7 +69,7 @@ namespace restourant
 
                 chickenOrder.Cook();
 
-                return $"{chickenOrder.GetQuantity() } is ready chicken";
+                return $"{chickenOrder.GetQuantity() } chicken is ready ";
             }
             else
             {
@@ -79,7 +81,7 @@ namespace restourant
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
-                return $"{eggorder.GetQuantity() } is ready egg";
+                return $"{eggorder.GetQuantity() } egg is ready";
             }
 
 

@@ -15,8 +15,10 @@ namespace restourant
         private Employee employee;
         private object connect;
         private int quantRequest = 1;
-        public Form1()
+        private bool newRequest = false;
+        int calculator = 0;
 
+        public Form1()
         {
             InitializeComponent();
             employee = new Employee();
@@ -27,19 +29,27 @@ namespace restourant
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RequestException();
-            int quantity = int.Parse(textBox1.Text);
-
-
-            if (Chicken.Checked)
+            if (textBox1.Text == "")
             {
-                connect = employee.NewRequest(quantity, typeof(ChickenOrder));
-                label2.Text = employee.Inspect(connect);
+                listBox1.Items.Add("Quantity is not specified");
             }
-            else if (checkBox2.Checked)
+            else
             {
-                connect = employee.NewRequest(quantity, typeof(EggOrder));
-                label2.Text = employee.Inspect(connect);
+                RequestException();
+                int quantity = int.Parse(textBox1.Text);
+                newRequest = true;
+
+
+                if (radioButton1.Checked)
+                {
+                    connect = employee.NewRequest(quantity, typeof(ChickenOrder));
+                    label2.Text = employee.Inspect(connect);
+                }
+                else if (radioButton2.Checked)
+                {
+                    connect = employee.NewRequest(quantity, typeof(EggOrder));
+                    label2.Text = employee.Inspect(connect);
+                }
             }
         }
 
@@ -48,15 +58,15 @@ namespace restourant
             if (quantRequest == 3)
             {
                 quantRequest = 1;
-                if (Chicken.Checked)
+                if (radioButton1.Checked)
                 {
-                    Chicken.Checked = false;
-                    checkBox2.Checked = true;
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = true;
                 }
                 else
                 {
-                    Chicken.Checked = true;
-                    checkBox2.Checked = false;
+                    radioButton1.Checked = true;
+                    radioButton2.Checked = false;
                 }
             }
             ++quantRequest;
@@ -70,14 +80,36 @@ namespace restourant
         private void button2_Click(object sender, EventArgs e)
         {
             RequestException();
+            newRequest = true;
             connect = employee.CopyRequest();
-
             label2.Text = employee.Inspect(connect);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox2.Text = employee.PrepareFood(connect);
+
+            if (newRequest == true)
+            {
+                calculator++;
+                if (calculator == 1)
+                {
+                    listBox1.Items.Add(employee.PrepareFood(connect));
+                    textBox1.Text = "";
+                    label2.Text = "";
+                    newRequest = false;
+                }
+                else
+                {
+                    listBox1.Items.Add("no request");
+                }
+            }
+            else
+            {
+                listBox1.Items.Add("no request");
+            }
+            calculator = 0;
+
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
