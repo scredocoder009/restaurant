@@ -20,13 +20,17 @@ namespace restourant
         public object NewRequest(int quantity, Type MenuIntem)
         {
             quant = quantity;
-            menu_Item = MenuIntem;
+            //menu_Item = MenuIntem;
 
             if (MenuIntem == typeof(ChickenOrder))
             {
-                return new ChickenOrder(quantity);
+                menu_Item = new ChickenOrder(quantity);
             }
-            return new EggOrder(quantity);
+            else
+            {
+                menu_Item = new EggOrder(quantity);
+            }
+            return menu_Item;
         }
 
 
@@ -45,8 +49,7 @@ namespace restourant
             if (menuItem.GetType() == typeof(EggOrder))
             {
                 return ((EggOrder)menuItem).GetQuality().ToString();
-
-                //  return ((EggOrder)menuItem).GetQuantity().ToString();
+                     
             }
 
             return " No inspection is required";

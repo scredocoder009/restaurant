@@ -16,7 +16,7 @@ namespace restourant
            this.quantity = quantity;
 
            Random random = new Random();
-           quality = random.Next(101);
+           quality = random.Next(30, 101);
         }
 
         public int GetQuantity()

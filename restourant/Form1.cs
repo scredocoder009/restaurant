@@ -114,6 +114,7 @@ namespace restourant
                 listBox1.Items.Add("no request");
             }
             calculator = 0;
+            newRequest = false;
 
 
         }
