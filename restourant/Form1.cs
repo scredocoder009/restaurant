@@ -63,7 +63,7 @@ namespace restourant
         {
             if (quantRequest == 3)
             {
-                quantRequest = 1;
+                quantRequest = 0;
                 if (radioButton1.Checked)
                 {
                     radioButton1.Checked = false;
@@ -99,10 +99,17 @@ namespace restourant
                 calculator++;
                 if (calculator == 1)
                 {
-                    listBox1.Items.Add(employee.PrepareFood(connect));
-                    textBox1.Text = "";
-                    label2.Text = "";
-                    newRequest = false;
+                    PrepareFoodResult result = employee.PrepareFood(connect);
+                    if(result.valid)
+                    {
+                        listBox1.Items.Add(result.message);
+                        textBox1.Text = "";
+                        label2.Text = "";
+                        newRequest = false;
+                    } else
+                    {
+                        label2.Text = result.message;
+                    }
                 }
                 else
                 {

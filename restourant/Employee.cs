@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+public struct PrepareFoodResult
+{
+
+    public PrepareFoodResult(bool valid, string message)
+    {
+        this.valid = valid;
+        this.message = message;
+    }
+
+    public bool valid;
+    public string message;
+}
+
 namespace restourant
 {
     class Employee
     {
         private int quant;
         private object menu_Item;
+       
 
 
         public Employee()
@@ -57,8 +71,8 @@ namespace restourant
         }
 
 
-        public string PrepareFood(object menuItem)
-        {
+        public PrepareFoodResult PrepareFood(object menuItem)
+        {   
 
             if (menuItem.GetType() == typeof(ChickenOrder))
             {
@@ -72,7 +86,7 @@ namespace restourant
 
                 chickenOrder.Cook();
 
-                return $"{chickenOrder.GetQuantity() } chicken is ready ";
+                return  new PrepareFoodResult(true, $"{chickenOrder.GetQuantity() } chicken is ready ");
             }
             else
             {
@@ -80,11 +94,17 @@ namespace restourant
 
                 for (int i = 0; i < eggorder.GetQuantity(); i++)
                 {
-                    eggorder.Crack();
+                    try {
+                        eggorder.Crack();
+                    }catch(Exception ex)
+                    {
+                        return new PrepareFoodResult(false, ex.Message);
+                    }
+                    
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
-                return $"{eggorder.GetQuantity() } egg is ready";
+                return  new  PrepareFoodResult( true , $"{eggorder.GetQuantity() } egg is ready");
             }
 
 

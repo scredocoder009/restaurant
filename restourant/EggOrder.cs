@@ -16,7 +16,7 @@ namespace restourant
            this.quantity = quantity;
 
            Random random = new Random();
-           quality = random.Next(30, 101);
+           quality = random.Next( 101);
         }
 
         public int GetQuantity()
@@ -31,7 +31,7 @@ namespace restourant
         }
 
          
-        public void Crack()
+        public void Crack() 
         {
             if (this.quality < 25)
             {
