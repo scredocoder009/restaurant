@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace restourant
 {
-    
+
     // ҳамма хатогиҳо бояд коркард кара шавад ва ба истифодабаранда нишон дода шавад.
     // таърихи фармонхоро дар оинаи дидани натиҷа ногоҳ доред.
     // Пешхизмат наметавонад 2 фармонро дар як вақт қабул намояд (пешхизмат наметавонад дар як вақт фармони ҳам  chicken ва egg гирад) 
@@ -18,9 +18,8 @@ namespace restourant
     {
         private Employee employee;
         private object connect;
-        private int quantRequest = 1;
         private bool newRequest = false;
-        int calculator = 0;
+        private bool copy = false;
 
         public Form1()
         {
@@ -39,7 +38,7 @@ namespace restourant
             }
             else
             {
-                RequestException();
+                copy = false;
                 int quantity = int.Parse(textBox1.Text);
                 newRequest = true;
 
@@ -57,38 +56,22 @@ namespace restourant
             }
         }
 
-//пешхизмат фаромушхотир мебошад 
-// ба талаботҳои дар саҳифаи 8 ва саҳифаи 17 буда назар кунед
-        private void RequestException()
-        {
-            if (quantRequest == 3)
-            {
-                quantRequest = 0;
-                if (radioButton1.Checked)
-                {
-                    radioButton1.Checked = false;
-                    radioButton2.Checked = true;
-                }
-                else
-                {
-                    radioButton1.Checked = true;
-                    radioButton2.Checked = false;
-                }
-            }
-            ++quantRequest;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        //пешхизмат фаромушхотир мебошад 
+        // ба талаботҳои дар саҳифаи 8 ва саҳифаи 17 буда назар кунед
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RequestException();
-            newRequest = true;
-            connect = employee.CopyRequest();
-            label2.Text = employee.Inspect(connect);
+            if (copy == true)
+            {
+                newRequest = true;
+                connect = employee.CopyRequest();
+                label2.Text = employee.Inspect(connect);
+            }
+            else
+            {
+                listBox1.Items.Add("You don't have new request");
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -96,39 +79,19 @@ namespace restourant
 
             if (newRequest == true)
             {
-                calculator++;
-                if (calculator == 1)
-                {
-                    PrepareFoodResult result = employee.PrepareFood(connect);
-                    if(result.valid)
-                    {
-                        listBox1.Items.Add(result.message);
-                        textBox1.Text = "";
-                        label2.Text = "";
-                        newRequest = false;
-                    } else
-                    {
-                        label2.Text = result.message;
-                    }
-                }
-                else
-                {
-                    listBox1.Items.Add("no request");
-                }
+                string result = employee.PrepareFood(connect);
+
+                listBox1.Items.Add(result);
+                textBox1.Text = "";
+                label2.Text = "";
+                newRequest = false;
+                copy = true;
             }
             else
             {
                 listBox1.Items.Add("no request");
             }
-            calculator = 0;
             newRequest = false;
-
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

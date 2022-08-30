@@ -3,27 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 public struct PrepareFoodResult
 {
 
-    public PrepareFoodResult(bool valid, string message)
-    {
-        this.valid = valid;
-        this.message = message;
-    }
+    // public PrepareFoodResult(bool valid, string message)
+    ///  {
+    //      this.valid = valid;
+    //      this.message = message;
+    //  }
 
-    public bool valid;
-    public string message;
+    //  public bool valid;
+    //  public string message;
 }
+
 
 namespace restourant
 {
+
+
+
     class Employee
     {
         private int quant;
         private object menu_Item;
-       
+        private int calc = 0;
 
 
         public Employee()
@@ -35,6 +40,7 @@ namespace restourant
         {
             quant = quantity;
             //menu_Item = MenuIntem;
+
 
             if (MenuIntem == typeof(ChickenOrder))
             {
@@ -50,6 +56,7 @@ namespace restourant
 
         public object CopyRequest()
         {
+
             if (menu_Item.GetType() == typeof(EggOrder))
             {
                 return new EggOrder(quant);
@@ -63,16 +70,29 @@ namespace restourant
             if (menuItem.GetType() == typeof(EggOrder))
             {
                 return ((EggOrder)menuItem).GetQuality().ToString();
-                     
+
             }
 
             return " No inspection is required";
-            
+
         }
 
 
-        public PrepareFoodResult PrepareFood(object menuItem)
-        {   
+        public string PrepareFood(object menuItem)
+        {
+            calc++;
+            if (calc == 3)
+            {
+                if (menuItem.GetType() == typeof(ChickenOrder))
+                {
+                    menuItem = new EggOrder(quant);
+                }
+                else
+                {
+                    menuItem = new ChickenOrder(quant);
+                }
+                calc = 0;
+            }
 
             if (menuItem.GetType() == typeof(ChickenOrder))
             {
@@ -86,7 +106,7 @@ namespace restourant
 
                 chickenOrder.Cook();
 
-                return  new PrepareFoodResult(true, $"{chickenOrder.GetQuantity() } chicken is ready ");
+                return chickenOrder.GetQuantity().ToString() + " chicken is ready";
             }
             else
             {
@@ -94,17 +114,19 @@ namespace restourant
 
                 for (int i = 0; i < eggorder.GetQuantity(); i++)
                 {
-                    try {
-                        eggorder.Crack();
-                    }catch(Exception ex)
+                    try
                     {
-                        return new PrepareFoodResult(false, ex.Message);
+                        eggorder.Crack();
                     }
-                    
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
+
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
-                return  new  PrepareFoodResult( true , $"{eggorder.GetQuantity() } egg is ready");
+                return ($"{eggorder.GetQuantity() } egg is ready");
             }
 
 
