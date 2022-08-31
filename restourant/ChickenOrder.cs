@@ -12,15 +12,12 @@ namespace restourant
 
         public ChickenOrder(int quantity)
         {
-
             this.quantity = quantity;
-
         }
+
         public int GetQuantity()
         {
-
             return this.quantity;
-
         }
 
         public void CutUp()

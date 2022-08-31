@@ -11,15 +11,14 @@ using System.Windows.Forms;
 namespace restourant
 {
 
-    // ҳамма хатогиҳо бояд коркард кара шавад ва ба истифодабаранда нишон дода шавад.
-    // таърихи фармонхоро дар оинаи дидани натиҷа ногоҳ доред.
-    // Пешхизмат наметавонад 2 фармонро дар як вақт қабул намояд (пешхизмат наметавонад дар як вақт фармони ҳам  chicken ва egg гирад) 
     public partial class Form1 : Form
     {
         private Employee employee;
         private object connect;
         private bool newRequest = false;
         private bool copy = false;
+        private bool text = false;
+        private string t1 = "";
 
         public Form1()
         {
@@ -28,20 +27,19 @@ namespace restourant
 
         }
 
-
-
         private void button1_Click(object sender, EventArgs e)
         {
+            text = Employee.IsNumeric(textBox1.Text);
+
             if (textBox1.Text == "")
             {
                 listBox1.Items.Add("Quantity is not specified");
             }
-            else
-            {
+                else if (text)
+            {                             
                 copy = false;
                 int quantity = int.Parse(textBox1.Text);
                 newRequest = true;
-
 
                 if (radioButton1.Checked)
                 {
@@ -54,10 +52,12 @@ namespace restourant
                     label2.Text = employee.Inspect(connect);
                 }
             }
+            else
+            {
+                listBox1.Items.Add("Please enter a number");
+                textBox1.Text = "";
+            }
         }
-
-        //пешхизмат фаромушхотир мебошад 
-        // ба талаботҳои дар саҳифаи 8 ва саҳифаи 17 буда назар кунед
 
         private void button2_Click(object sender, EventArgs e)
         {

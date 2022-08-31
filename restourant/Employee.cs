@@ -5,42 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public struct PrepareFoodResult
-{
-
-    // public PrepareFoodResult(bool valid, string message)
-    ///  {
-    //      this.valid = valid;
-    //      this.message = message;
-    //  }
-
-    //  public bool valid;
-    //  public string message;
-}
-
-
 namespace restourant
 {
-
-
-
     class Employee
     {
         private int quant;
         private object menu_Item;
         private int calc = 0;
 
-
         public Employee()
         {
 
         }
 
+
+
         public object NewRequest(int quantity, Type MenuIntem)
         {
-            quant = quantity;
-            //menu_Item = MenuIntem;
 
+            quant = quantity;
 
             if (MenuIntem == typeof(ChickenOrder))
             {
@@ -53,10 +36,8 @@ namespace restourant
             return menu_Item;
         }
 
-
         public object CopyRequest()
         {
-
             if (menu_Item.GetType() == typeof(EggOrder))
             {
                 return new EggOrder(quant);
@@ -64,23 +45,19 @@ namespace restourant
             return new ChickenOrder(quant);
         }
 
-
         public string Inspect(object menuItem)
         {
             if (menuItem.GetType() == typeof(EggOrder))
             {
                 return ((EggOrder)menuItem).GetQuality().ToString();
-
             }
-
             return " No inspection is required";
-
         }
-
 
         public string PrepareFood(object menuItem)
         {
             calc++;
+
             if (calc == 3)
             {
                 if (menuItem.GetType() == typeof(ChickenOrder))
@@ -97,21 +74,16 @@ namespace restourant
             if (menuItem.GetType() == typeof(ChickenOrder))
             {
                 ChickenOrder chickenOrder = (ChickenOrder)menuItem;
-
-
                 for (int i = 0; i < chickenOrder.GetQuantity(); i++)
                 {
                     chickenOrder.CutUp();
                 }
-
                 chickenOrder.Cook();
-
                 return chickenOrder.GetQuantity().ToString() + " chicken is ready";
             }
             else
             {
                 EggOrder eggorder = (EggOrder)menuItem;
-
                 for (int i = 0; i < eggorder.GetQuantity(); i++)
                 {
                     try
@@ -122,14 +94,17 @@ namespace restourant
                     {
                         return ex.Message;
                     }
-
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
                 return ($"{eggorder.GetQuantity() } egg is ready");
             }
+        }
 
-
+        public static bool IsNumeric( string s)
+        {
+            float output;
+            return float.TryParse(s, out output);
         }
     }
 }
