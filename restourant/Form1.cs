@@ -18,7 +18,7 @@ namespace restourant
         private bool newRequest = false;
         private bool copy = false;
         private bool text = false;
-        private string t1 = "";
+        private string t1 = ""; //TODO: Not used field
 
         public Form1()
         {
