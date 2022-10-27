@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace restourant
 {
@@ -10,79 +11,100 @@ namespace restourant
     {
         private int quant;
         private object menu_Item;
-
+        private int calc = 0;
 
         public Employee()
         {
 
         }
-
+       
         public object NewRequest(int quantity, Type MenuIntem)
         {
+
             quant = quantity;
-            menu_Item = MenuIntem;
 
-            if (MenuIntem ==typeof( ChickenOrder))
+            if (MenuIntem == typeof(ChickenOrder))
             {
-                return new ChickenOrder(quantity);
+                menu_Item = new ChickenOrder(quantity);
             }
-            return new EggOrder(quantity);
+            else
+            {
+                menu_Item = new EggOrder(quantity);
+            }
+            return menu_Item;
         }
-   
-
+        
+        //TODO: Method should copy last order even if it was an wrong order
         public object CopyRequest()
         {
-            if (menu_Item is ChickenOrder)
+            if (menu_Item.GetType() == typeof(EggOrder))
             {
-                return new ChickenOrder(quant);
+                return new EggOrder(quant);
             }
-            return new EggOrder(quant);
+            return new ChickenOrder(quant);
         }
-
-
+        
+        //TODO: You have to simulate 1/2 forgetting inspectation if the order is an egg
         public string Inspect(object menuItem)
         {
-            if (menuItem is EggOrder)
+            if (menuItem.GetType() == typeof(EggOrder))
             {
-                return "Egg quality" + ((EggOrder)menuItem).GetQuality();
+                return ((EggOrder)menuItem).GetQuality().ToString();
             }
-
-            return "No inspection is required";
-
+            return " No inspection is required";
         }
-
 
         public string PrepareFood(object menuItem)
         {
+            calc++;
 
-            if (menuItem is ChickenOrder)
+            if (calc == 3)
+            {
+                if (menuItem.GetType() == typeof(ChickenOrder))
+                {
+                    menuItem = new EggOrder(quant);
+                }
+                else
+                {
+                    menuItem = new ChickenOrder(quant);
+                }
+                calc = 0;
+            }
+
+            if (menuItem.GetType() == typeof(ChickenOrder))
             {
                 ChickenOrder chickenOrder = (ChickenOrder)menuItem;
-
-
                 for (int i = 0; i < chickenOrder.GetQuantity(); i++)
                 {
                     chickenOrder.CutUp();
                 }
-
                 chickenOrder.Cook();
-
-                return $"{chickenOrder.GetQuantity() } is ready chicken";
+                return chickenOrder.GetQuantity().ToString() + " chicken is ready";
             }
             else
             {
                 EggOrder eggorder = (EggOrder)menuItem;
-
                 for (int i = 0; i < eggorder.GetQuantity(); i++)
                 {
-                    eggorder.Crack();
+                    try
+                    {
+                        eggorder.Crack();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
-                return $"{eggorder.GetQuantity() } is ready egg";
+                return ($"{eggorder.GetQuantity() } egg is ready");
             }
+        }
 
-
+        public static bool IsNumeric( string s)
+        {
+            float output;
+            return float.TryParse(s, out output);
         }
     }
 }

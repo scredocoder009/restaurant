@@ -14,9 +14,8 @@ namespace restourant
         public EggOrder(int quantity)
         {
            this.quantity = quantity;
-
            Random random = new Random();
-           quality = random.Next(101);
+           quality = random.Next( 101);
         }
 
         public int GetQuantity()
@@ -24,14 +23,12 @@ namespace restourant
             return this.quantity;
         }
 
-
         public int GetQuality()
         {
             return quality;
         }
-
-         
-        public void Crack()
+     
+        public void Crack() 
         {
             if (this.quality < 25)
             {
@@ -48,5 +45,6 @@ namespace restourant
         {
 
         }
+
     }
 }

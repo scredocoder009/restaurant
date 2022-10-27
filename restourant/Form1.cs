@@ -10,79 +10,88 @@ using System.Windows.Forms;
 
 namespace restourant
 {
+
     public partial class Form1 : Form
     {
         private Employee employee;
         private object connect;
-        private int quantRequest = 1;
-        public Form1()
+        private bool newRequest = false;
+        private bool copy = false;
+        private bool text = false;
+        private string t1 = ""; //TODO: Not used field
 
+        public Form1()
         {
             InitializeComponent();
             employee = new Employee();
 
         }
 
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-            RequestException();
-            int quantity = int.Parse(textBox1.Text);
+            text = Employee.IsNumeric(textBox1.Text);
 
-
-            if (Chicken.Checked)
+            if (textBox1.Text == "")
             {
-                connect = employee.NewRequest(quantity, typeof(ChickenOrder));
-                label2.Text = employee.Inspect(connect);
+                listBox1.Items.Add("Quantity is not specified");
             }
-            else if (checkBox2.Checked)
-            {
-                connect = employee.NewRequest(quantity, typeof(EggOrder));
-                label2.Text = employee.Inspect(connect);
-            }
-        }
+                else if (text)
+            {                             
+                copy = false;
+                int quantity = int.Parse(textBox1.Text);
+                newRequest = true;
 
-        private void RequestException()
-        {
-            if (quantRequest == 3)
-            {
-                quantRequest = 1;
-                if (Chicken.Checked)
+                if (radioButton1.Checked)
                 {
-                    Chicken.Checked = false;
-                    checkBox2.Checked = true;
+                    connect = employee.NewRequest(quantity, typeof(ChickenOrder));
+                    label2.Text = employee.Inspect(connect);
                 }
-                else
+                else if (radioButton2.Checked)
                 {
-                    Chicken.Checked = true;
-                    checkBox2.Checked = false;
+                    connect = employee.NewRequest(quantity, typeof(EggOrder));
+                    label2.Text = employee.Inspect(connect);
                 }
             }
-            ++quantRequest;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            else
+            {
+                listBox1.Items.Add("Please enter a number");
+                textBox1.Text = "";
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RequestException();
-            connect = employee.CopyRequest();
+            if (copy == true)
+            {
+                newRequest = true;
+                connect = employee.CopyRequest();
+                label2.Text = employee.Inspect(connect);
+            }
+            else
+            {
+                listBox1.Items.Add("You don't have new request");
+            }
 
-            label2.Text = employee.Inspect(connect);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox2.Text = employee.PrepareFood(connect);
-        }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
+            if (newRequest == true)
+            {
+                string result = employee.PrepareFood(connect);
 
+                listBox1.Items.Add(result);
+                textBox1.Text = "";
+                label2.Text = "";
+                newRequest = false;
+                copy = true;
+            }
+            else
+            {
+                listBox1.Items.Add("no request");
+            }
+            newRequest = false;
         }
     }
 }
