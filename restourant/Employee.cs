@@ -11,7 +11,6 @@ namespace restourant
     {
         private int quant;
         private object menu_Item;
-        private int calc = 0;
         private int calc2 = 0;
 
         public Employee()
@@ -35,7 +34,6 @@ namespace restourant
             return menu_Item;
         }
 
-        //TODO: Method should copy last order even if it was an wrong order
         public object CopyRequest()
         {
             if (menu_Item.GetType() == typeof(EggOrder))
@@ -65,21 +63,6 @@ namespace restourant
 
         public string PrepareFood(object menuItem)
         {
-            calc++;
-
-            //if (calc == 3)
-            //{
-            //    if (menuItem.GetType() == typeof(ChickenOrder))
-            //    {
-            //        menuItem = new EggOrder(quant);
-            //    }
-            //    else
-            //    {
-            //        menuItem = new ChickenOrder(quant);
-            //    }
-            //    calc = 0;
-            //}
-
             if (menuItem.GetType() == typeof(ChickenOrder))
             {
                 ChickenOrder chickenOrder = (ChickenOrder)menuItem;
