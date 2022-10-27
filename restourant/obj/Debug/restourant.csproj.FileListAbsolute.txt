@@ -7,3 +7,6 @@ C:\Users\SuhrobSS\Documents\Visual Studio 2015\Projects\restourant\restourant\ob
 C:\Users\SuhrobSS\Documents\Visual Studio 2015\Projects\restourant\restourant\obj\Debug\restourant.csproj.GenerateResource.Cache
 C:\Users\SuhrobSS\Documents\Visual Studio 2015\Projects\restourant\restourant\obj\Debug\restourant.exe
 C:\Users\SuhrobSS\Documents\Visual Studio 2015\Projects\restourant\restourant\obj\Debug\restourant.pdb
+D:\restourant\restourant\bin\Debug\restourant.exe.config
+D:\restourant\restourant\obj\Debug\restourant.exe
+D:\restourant\restourant\obj\Debug\restourant.pdb
