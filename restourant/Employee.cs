@@ -12,12 +12,13 @@ namespace restourant
         private int quant;
         private object menu_Item;
         private int calc = 0;
+        private int calc2 = 0;
 
         public Employee()
         {
 
         }
-       
+
         public object NewRequest(int quantity, Type MenuIntem)
         {
 
@@ -33,7 +34,7 @@ namespace restourant
             }
             return menu_Item;
         }
-        
+
         //TODO: Method should copy last order even if it was an wrong order
         public object CopyRequest()
         {
@@ -43,13 +44,21 @@ namespace restourant
             }
             return new ChickenOrder(quant);
         }
-        
-        //TODO: You have to simulate 1/2 forgetting inspectation if the order is an egg
+
         public string Inspect(object menuItem)
         {
             if (menuItem.GetType() == typeof(EggOrder))
             {
-                return ((EggOrder)menuItem).GetQuality().ToString();
+                calc2++;
+                if (calc2 % 2 == 0)
+                {
+                    return " No inspection is required";
+                }
+                else
+                {
+                    return ((EggOrder)menuItem).GetQuality().ToString();
+                }
+
             }
             return " No inspection is required";
         }
@@ -101,7 +110,7 @@ namespace restourant
             }
         }
 
-        public static bool IsNumeric( string s)
+        public static bool IsNumeric(string s)
         {
             float output;
             return float.TryParse(s, out output);
