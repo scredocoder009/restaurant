@@ -67,18 +67,18 @@ namespace restourant
         {
             calc++;
 
-            if (calc == 3)
-            {
-                if (menuItem.GetType() == typeof(ChickenOrder))
-                {
-                    menuItem = new EggOrder(quant);
-                }
-                else
-                {
-                    menuItem = new ChickenOrder(quant);
-                }
-                calc = 0;
-            }
+            //if (calc == 3)
+            //{
+            //    if (menuItem.GetType() == typeof(ChickenOrder))
+            //    {
+            //        menuItem = new EggOrder(quant);
+            //    }
+            //    else
+            //    {
+            //        menuItem = new ChickenOrder(quant);
+            //    }
+            //    calc = 0;
+            //}
 
             if (menuItem.GetType() == typeof(ChickenOrder))
             {

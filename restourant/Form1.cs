@@ -18,17 +18,33 @@ namespace restourant
         private bool newRequest = false;
         private bool copy = false;
         private bool text = false;
+        private int calc = 0;
 
         public Form1()
         {
             InitializeComponent();
             employee = new Employee();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             text = Employee.IsNumeric(textBox1.Text);
+
+            calc++;
+            if (calc == 3)
+            {
+                if (radioButton1.Checked)
+                {
+                    radioButton1.Checked = false;
+                    radioButton2.Checked = true;
+                }
+                else if (radioButton2.Checked)
+                {
+                    radioButton1.Checked = true;
+                    radioButton2.Checked = false;
+                }
+                calc = 0;
+            }
 
             if (textBox1.Text == "")
             {
@@ -70,7 +86,6 @@ namespace restourant
             {
                 listBox1.Items.Add("You don't have new request");
             }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
