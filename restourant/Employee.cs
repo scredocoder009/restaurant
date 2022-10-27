@@ -17,9 +17,7 @@ namespace restourant
         {
 
         }
-
-
-
+       
         public object NewRequest(int quantity, Type MenuIntem)
         {
 
@@ -35,7 +33,8 @@ namespace restourant
             }
             return menu_Item;
         }
-
+        
+        //TODO: Method should copy last order even if it was an wrong order
         public object CopyRequest()
         {
             if (menu_Item.GetType() == typeof(EggOrder))
@@ -44,7 +43,8 @@ namespace restourant
             }
             return new ChickenOrder(quant);
         }
-
+        
+        //TODO: You have to simulate 1/2 forgetting inspectation if the order is an egg
         public string Inspect(object menuItem)
         {
             if (menuItem.GetType() == typeof(EggOrder))
