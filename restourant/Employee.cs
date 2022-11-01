@@ -34,6 +34,8 @@ namespace restourant
             return menu_Item;
         }
 
+        //TODO: Method should copy last query with it`s quality and quantity.(Even if it is rotten)
+        //See presentation on page 17 
         public object CopyRequest()
         {
             if (menu_Item.GetType() == typeof(EggOrder))
