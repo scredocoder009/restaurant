@@ -40,10 +40,13 @@ namespace restourant
         {
             if (menu_Item.GetType() == typeof(EggOrder))
             {
-                return new EggOrder(quant);
+                calc2--;
+                return ((EggOrder)menu_Item);
             }
-            return new ChickenOrder(quant);
+            return  ((ChickenOrder)menu_Item);
         }
+
+
 
         public string Inspect(object menuItem)
         {
