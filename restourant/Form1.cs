@@ -50,8 +50,8 @@ namespace restourant
             {
                 listBox1.Items.Add("Quantity is not specified");
             }
-                else if (text)
-            {                             
+            else if (text)
+            {
                 copy = false;
                 int quantity = int.Parse(textBox1.Text);
                 newRequest = true;

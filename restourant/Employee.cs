@@ -34,8 +34,6 @@ namespace restourant
             return menu_Item;
         }
 
-        //TODO: Method should copy last query with it`s quality and quantity.(Even if it is rotten)
-        //See presentation on page 17 
         public object CopyRequest()
         {
             if (menu_Item.GetType() == typeof(EggOrder))
@@ -43,7 +41,7 @@ namespace restourant
                 calc2--;
                 return ((EggOrder)menu_Item);
             }
-            return  ((ChickenOrder)menu_Item);
+            return ((ChickenOrder)menu_Item);
         }
 
 
@@ -61,7 +59,6 @@ namespace restourant
                 {
                     return ((EggOrder)menuItem).GetQuality().ToString();
                 }
-
             }
             return " No inspection is required";
         }
@@ -94,7 +91,7 @@ namespace restourant
                     eggorder.DiscardShell();
                 }
                 eggorder.Cook();
-                return ($"{eggorder.GetQuantity() } egg is ready");
+                return (eggorder.GetQuantity()+" egg is ready");
             }
         }
 
