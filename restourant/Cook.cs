@@ -8,12 +8,12 @@ namespace restourant
 {
     class Cook
     {
-        private int chicken_quantity = 0;
-        private int egg_quantity = 0;
-        private ChickenOrder chickenOrder;
+        private int chicken_quantity = 0; 
+        private int egg_quantity = 0; 
+        private ChickenOrder chickenOrder; 
         private EggOrder eggOrder;
 
-
+        //TODO: Метод бояд объекти закази омада бо микдори аз клиент гирифта шуда созад, на инки хар дафъа объекти нав сохта шавад
         public void Submit(MenuItem item)
         {
             if (item == MenuItem.chicken)

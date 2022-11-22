@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace restourant
 {
+    //TODO: Синфи нолозима
     class User_Interace_Dialog
     {
     }
