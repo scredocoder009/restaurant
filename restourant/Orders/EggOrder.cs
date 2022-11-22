@@ -9,7 +9,6 @@ namespace restourant
     class EggOrder:Order
     {
         private int quality;
-        private int quantity; //TODO: Ин поле аллакай дар синфи Order муайян карда шудааст
 
         public EggOrder(int quantity) : base(quantity)
         {

@@ -13,10 +13,9 @@ namespace restourant
     public partial class Form1 : Form
     {
         private Server server;
-        public int calc = 0; //TODO: Field-и нолозима
         private bool _clickSend = false;
         private bool _clickResive = false;
-        private int index; //TODO: Field-и нолозима
+
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +37,7 @@ namespace restourant
             {
                 try
                 {
-                    index = server.Receive(int.Parse(textBox1.Text), int.Parse(textBox2.Text), comboBox1.SelectedIndex + 2);
+            server.Receive(int.Parse(textBox1.Text), int.Parse(textBox2.Text), comboBox1.SelectedIndex + 2);
                     _clickResive = true;
                 }
                 catch (Exception ex)
@@ -79,7 +78,6 @@ namespace restourant
                         listBox1.Items.Add(result[i].ToString());
                     }
                 }
-                listBox1.Items.Add("Enjoy your meal !");
             }
             else
             {

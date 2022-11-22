@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 namespace restourant
 {
     class Cook
-    {
-        private int chicken_quantity = 0; 
-        private int egg_quantity = 0; 
-        private ChickenOrder chickenOrder; 
-        private int chickenQuantity = 0;
-        private int eggQuantity = 0;
+    { 
         private ChickenOrder chickenOrder;
         private EggOrder eggOrder;
+        private int chickenQuantity = 0;
+        private int eggQuantity = 0;
 
         public void Submit(MenuItem item)
         {

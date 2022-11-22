@@ -8,15 +8,16 @@ namespace restourant
 {
     class Order
     {
+        public  int quantity;
+
         public Order(int quantity)
         {
-
+            this.quantity = quantity;
         }
 
-        //TODO: Метод бояд микдори заказро баргардонад
-        public void GetQuantity()
+        public int GetQuantity()
         {
-
+            return quantity;
         }
 
         public void Cook()
