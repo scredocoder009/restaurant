@@ -6,21 +6,16 @@ using System.Threading.Tasks;
 
 namespace restourant
 {
-    class EggOrder
+    class EggOrder:Order
     {
         private int quality;
         private int quantity;
 
-        public EggOrder(int quantity)
+        public EggOrder(int quantity) : base(quantity)
         {
            this.quantity = quantity;
-           Random random = new Random();
-           quality = random.Next( 101);
-        }
-
-        public int GetQuantity()
-        {
-            return this.quantity;
+            Random random = new Random();
+            quality = random.Next(30, 101);
         }
 
         public int GetQuality()
@@ -30,21 +25,12 @@ namespace restourant
      
         public void Crack() 
         {
-            if (this.quality < 25)
-            {
-                throw new Exception("This simulates a rotten egg");
-            }
+  
         }
 
         public void DiscardShell()
         {
 
         }
-
-        public void Cook()
-        {
-
-        }
-
     }
 }

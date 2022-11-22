@@ -10,102 +10,82 @@ using System.Windows.Forms;
 
 namespace restourant
 {
-
     public partial class Form1 : Form
     {
-        private Employee employee;
-        private object connect;
-        private bool newRequest = false;
-        private bool copy = false;
-        private bool text = false;
-        private int calc = 0;
-
+        private Server server;
+        public int calc = 0;
+        private bool _clickSend = false;
+        private bool _clickResive = false;
+        private int index;
         public Form1()
         {
             InitializeComponent();
-            employee = new Employee();
+            comboBox1.Items.AddRange(Enum.GetNames(typeof(Drink)));
+            comboBox1.Text = "" + Drink.NoDrink;
+            server = new Server();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            text = Employee.IsNumeric(textBox1.Text);
+            int number;
+            bool text1 = false;
+            bool text2 = false;
+            text1 = int.TryParse(textBox1.Text, out number);
+            text2 = int.TryParse(textBox2.Text, out number);
 
-            calc++;
-            if (calc == 3)
+            if (text1 == true && text2 == true)
             {
-                if (radioButton1.Checked)
+                try
                 {
-                    radioButton1.Checked = false;
-                    radioButton2.Checked = true;
+                    index = server.Receive(int.Parse(textBox1.Text), int.Parse(textBox2.Text), comboBox1.SelectedIndex + 2);
+                    _clickResive = true;
                 }
-                else if (radioButton2.Checked)
+                catch (Exception ex)
                 {
-                    radioButton1.Checked = true;
-                    radioButton2.Checked = false;
-                }
-                calc = 0;
-            }
-
-            if (textBox1.Text == "")
-            {
-                listBox1.Items.Add("Quantity is not specified");
-            }
-            else if (text)
-            {
-                copy = false;
-                int quantity = int.Parse(textBox1.Text);
-                newRequest = true;
-
-                if (radioButton1.Checked)
-                {
-                    connect = employee.NewRequest(quantity, typeof(ChickenOrder));
-                    label2.Text = employee.Inspect(connect);
-                }
-                else if (radioButton2.Checked)
-                {
-                    connect = employee.NewRequest(quantity, typeof(EggOrder));
-                    label2.Text = employee.Inspect(connect);
+                    listBox1.Items.Add(ex.Message.ToString());
                 }
             }
             else
             {
-                listBox1.Items.Add("Please enter a number");
-                textBox1.Text = "";
+                listBox1.Items.Add("please enter a number");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (copy == true)
+            if (_clickResive)
             {
-                newRequest = true;
-                connect = employee.CopyRequest();
-                label2.Text = employee.Inspect(connect);
-            }
-            else
-            {
-                listBox1.Items.Add("You don't have new request");
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-            if (newRequest == true)
-            {
-                string result = employee.PrepareFood(connect);
-
-                listBox1.Items.Add(result);
-                textBox1.Text = "";
-                label2.Text = "";
-                newRequest = false;
-                copy = true;
+                _clickSend = true;
+                _clickResive = false;
+                eggQuality.Text = (server.Send());
             }
             else
             {
                 listBox1.Items.Add("no request");
             }
-            newRequest = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] result = server.Serve();
+            if (_clickSend)
+            {
+                _clickSend = false;
+                for (int i = 0; i < result.Length; i++)
+                {
+                    if (result[i] != null)
+                    {
+                        listBox1.Items.Add(result[i].ToString());
+                    }
+                }
+                listBox1.Items.Add("Enjoy your meal !");
+            }
+            else
+            {
+                listBox1.Items.Add("no request");
+            }
         }
     }
 }
+
+

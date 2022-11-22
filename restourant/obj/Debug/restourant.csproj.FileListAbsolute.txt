@@ -16,3 +16,21 @@ D:\restourant\restourant\obj\Debug\restourant.csprojResolveAssemblyReference.cac
 D:\restourant\restourant\obj\Debug\restourant.Form1.resources
 D:\restourant\restourant\obj\Debug\restourant.Properties.Resources.resources
 D:\restourant\restourant\obj\Debug\restourant.csproj.GenerateResource.Cache
+D:\restourant — копия\restourant\bin\Debug\restourant.exe.config
+D:\restourant — копия\restourant\obj\Debug\restourant.exe
+D:\restourant — копия\restourant\obj\Debug\restourant.pdb
+D:\restourant — копия\restourant\obj\Debug\restourant.csprojResolveAssemblyReference.cache
+D:\restourant — копия\restourant\obj\Debug\restourant.Form1.resources
+D:\restourant — копия\restourant\obj\Debug\restourant.Properties.Resources.resources
+D:\restourant — копия\restourant\obj\Debug\restourant.csproj.GenerateResource.Cache
+D:\restourant — копия\restourant\bin\Debug\restourant.exe
+D:\restourant — копия\restourant\bin\Debug\restourant.pdb
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\bin\Debug\restourant.exe.config
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.exe
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.pdb
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\bin\Debug\restourant.exe
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\bin\Debug\restourant.pdb
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.csprojResolveAssemblyReference.cache
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.Form1.resources
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.Properties.Resources.resources
+C:\Users\SuhrobSS\Desktop\SimpleRestaurantSimulation2\restourant\obj\Debug\restourant.csproj.GenerateResource.Cache
