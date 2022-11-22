@@ -13,18 +13,17 @@ namespace restourant
         private ChickenOrder chickenOrder;
         private EggOrder eggOrder;
 
-
         public void Submit(MenuItem item)
         {
             if (item == MenuItem.chicken)
             {
                 chicken_quantity++;
-                chickenOrder = new ChickenOrder(chicken_quantity);
+              
             }
             else if (item == MenuItem.egg)
             {
                 egg_quantity++;
-                eggOrder = new EggOrder(egg_quantity);
+              
             }
         }
 
@@ -32,6 +31,7 @@ namespace restourant
         {
             if (chicken_quantity > 0)
             {
+                chickenOrder = new ChickenOrder(chicken_quantity);
                 for (int j = 0; j < chicken_quantity; j++)
                 {
                     chickenOrder.CutUp();
@@ -39,8 +39,8 @@ namespace restourant
                 chickenOrder.Cook();
             }
             if (egg_quantity > 0)
-            { 
-
+            {
+                eggOrder = new EggOrder(egg_quantity);
                 for (int j = 0; j < egg_quantity; j++)
                 {
                     eggOrder.Crack();

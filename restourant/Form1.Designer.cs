@@ -89,6 +89,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(32, 22);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "0";
             // 
             // label5
             // 
@@ -188,7 +189,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-  
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
