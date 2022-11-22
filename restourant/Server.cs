@@ -54,7 +54,7 @@ namespace restourant
         }
         public string[] Serve()
         {
-            string[] result = new string[8];
+            string[] result = new string[CustomerIndex];
             int chicken = 0;
             int egg = 0;
             for (int i = 0; i < CustomerIndex; i++)

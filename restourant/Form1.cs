@@ -24,7 +24,6 @@ namespace restourant
             server = new Server();
         }
 
-        //TODO: Баъди кабул кардан ва хато пахш кардани тугмаи Prepare ва баъдан пахш кардани Send хабари "Enjoy your meal" баромада истодааст
         private void button1_Click(object sender, EventArgs e)
         {
             int number;
@@ -67,17 +66,16 @@ namespace restourant
 
         private void button3_Click(object sender, EventArgs e)
         {
+            _clickResive = false;
             string[] result = server.Serve();
             if (_clickSend)
             {
                 _clickSend = false;
                 for (int i = 0; i < result.Length; i++)
                 {
-                    if (result[i] != null)
-                    {
                         listBox1.Items.Add(result[i].ToString());
-                    }
                 }
+                listBox1.Items.Add("Enjoy your meal !");
             }
             else
             {
