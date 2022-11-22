@@ -12,6 +12,8 @@ namespace restourant
         {
 
         }
+
+        //TODO: Метод бояд микдори заказро баргардонад
         public void GetQuantity()
         {
 

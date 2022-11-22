@@ -8,38 +8,40 @@ namespace restourant
 {
     class Cook
     {
-        private int chickenQuantity = 0;
-        private int eggQuantity = 0;
-        private ChickenOrder chickenOrder;
+        private int chicken_quantity = 0; 
+        private int egg_quantity = 0; 
+        private ChickenOrder chickenOrder; 
         private EggOrder eggOrder;
 
         public void Submit(MenuItem item)
         {
             if (item == MenuItem.chicken)
             {
-                chickenQuantity++;
+                chicken_quantity++;
+              
             }
             else if (item == MenuItem.egg)
             {
-                eggQuantity++;
+                egg_quantity++;
+              
             }
         }
 
         public void PrepareFood()
         {
-            if (chickenQuantity > 0)
+            if (chicken_quantity > 0)
             {
-                chickenOrder = new ChickenOrder(chickenQuantity);
-                for (int j = 0; j < chickenQuantity; j++)
+                chickenOrder = new ChickenOrder(chicken_quantity);
+                for (int j = 0; j < chicken_quantity; j++)
                 {
                     chickenOrder.CutUp();
                 }
                 chickenOrder.Cook();
             }
-            if (eggQuantity > 0)
+            if (egg_quantity > 0)
             {
-                eggOrder = new EggOrder(eggQuantity);
-                for (int j = 0; j < eggQuantity; j++)
+                eggOrder = new EggOrder(egg_quantity);
+                for (int j = 0; j < egg_quantity; j++)
                 {
                     eggOrder.Crack();
                     eggOrder.DiscardShell();
@@ -50,7 +52,7 @@ namespace restourant
 
         public string Inspect()
         {
-            if (eggQuantity > 0)
+            if (egg_quantity > 0)
             {
                 return eggOrder.GetQuality().ToString();
             }

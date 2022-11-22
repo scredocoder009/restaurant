@@ -13,10 +13,10 @@ namespace restourant
     public partial class Form1 : Form
     {
         private Server server;
-        public int calc = 0;
+        public int calc = 0; //TODO: Field-и нолозима
         private bool _clickSend = false;
         private bool _clickResive = false;
-        private int index;
+        private int index; //TODO: Field-и нолозима
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace restourant
             server = new Server();
         }
 
+        //TODO: Баъди кабул кардан ва хато пахш кардани тугмаи Prepare ва баъдан пахш кардани Send хабари "Enjoy your meal" баромада истодааст
         private void button1_Click(object sender, EventArgs e)
         {
             int number;
